@@ -28,8 +28,11 @@
 
         Debug("light", light);
 
+        var scale = 120;
+        var scaling = 30;
+
         // Skybox
-        var skybox = BABYLON.Mesh.CreateBox("skyBox", 200, scene);
+        var skybox = BABYLON.Mesh.CreateBox("skyBox", scale, scene);
         var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
         skyboxMaterial.backFaceCulling = false;
         skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../Content/Images/textures/skybox/skybox", scene);
@@ -39,12 +42,12 @@
         skyboxMaterial.disableLighting = true;
         skybox.material = skyboxMaterial;
 
-        skybox.scaling.x = 7;
-        skybox.scaling.z = 7;
-        skybox.scaling.y = 3;
+        skybox.scaling.x = scaling;
+        skybox.scaling.z = scaling;
+        skybox.scaling.y = 10;
 
         //var ground = BABYLON.Mesh.CreateGround("ground", 1400, 1400, 8, scene);
-        var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", 1400, 1400, 100, 0, 70, scene);
+        var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 130, scene);
         var groundMaterian = new BABYLON.StandardMaterial("ground", scene);
         groundMaterian.diffuseTexture = new BABYLON.Texture("../Content/Images/textures/grounds/ground.jpg", scene);
         groundMaterian.diffuseTexture.uScale = 6;
@@ -52,7 +55,7 @@
         groundMaterian.specularColor = new BABYLON.Color3(0, 0, 0);
         ground.material = groundMaterian;
 
-        ground.position.y = -200;
+        ground.position.y = -350;
 
         //Set gravity for the scene (G force like, on Y-axis)
         scene.gravity = new BABYLON.Vector3(0, -9, 0);
@@ -64,13 +67,6 @@
 
         var tank = BABYLON.Mesh.CreateBox("tank", 10, scene);
         tank.position.add(new BABYLON.Vector3(0, 30, 0));
-
-        //finally, say which mesh will be collisionable
-        ground.checkCollisions = true;
-        tank.checkCollisions = true;
-        tank.applyGravity = true;
-        camera.applyGravity = true;
-        camera.checkCollisions = true;
 
         return scene;
     };
