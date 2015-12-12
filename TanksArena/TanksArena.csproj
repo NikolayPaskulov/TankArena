@@ -128,11 +128,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Css\main.css" />
+    <Content Include="Content\Images\textures\grounds\gcanyon_height_bmp.png" />
+    <Content Include="Content\Images\textures\grounds\ground.jpg" />
+    <Content Include="Content\Images\textures\grounds\terrainbasic.png" />
+    <Content Include="Content\Images\textures\skybox\skybox_nx.jpg" />
+    <Content Include="Content\Images\textures\skybox\skybox_ny.jpg" />
+    <Content Include="Content\Images\textures\skybox\skybox_nz.jpg" />
+    <Content Include="Content\Images\textures\skybox\skybox_px.jpg" />
+    <Content Include="Content\Images\textures\skybox\skybox_py.jpg" />
+    <Content Include="Content\Images\textures\skybox\skybox_pz.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\libs\babylon.core.js" />
+    <Content Include="Scripts\libs\babylon.js" />
+    <Content Include="Scripts\libs\babylon.max.js" />
+    <Content Include="Scripts\libs\babylon.noworker.js" />
+    <Content Include="Scripts\libs\cannon.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -149,9 +163,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Assets\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\libs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,11 +1,9 @@
-﻿/// <reference path="~/babylon.js" />
+﻿/// <reference path="~/Scripts/libs/babylon.max.js" />
 
 
 (function () {
     var canvas = document.getElementById("renderCanvas");
     var engine = new BABYLON.Engine(canvas, true);
-
-
 
     var createScene = function () {
 
@@ -14,7 +12,7 @@
 
         // This creates and positions an free camera
         var camera = new BABYLON.FreeCamera("camera1",
-            new BABYLON.Vector3(0, 5, -10), scene);
+            new BABYLON.Vector3(0, 100, -20), scene);
 
         // This targets the camera to scene origin
         camera.setTarget(new BABYLON.Vector3.Zero());
@@ -23,20 +21,59 @@
         camera.attachControl(canvas, false);
 
         // This creates a light - aimed 0,1,0 - to the sky.
-        var light = new BABYLON.HemisphericLight("light1",
-            new BABYLON.Vector3(0, 1, 0), scene);
+        var light = new BABYLON.HemisphericLight("sun", new BABYLON.Vector3(0, 0, 0), scene);
+        //light.position.add(new BABYLON.Vector3(0, 50, 0));
 
-        // Dim the light a small amount
-        light.intensity = .5;
+        light.intensity = 0.6;
+
+        Debug("light", light);
 
         // Skybox
+        var skybox = BABYLON.Mesh.CreateBox("skyBox", 200, scene);
+        var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+        skyboxMaterial.backFaceCulling = false;
+        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../Content/Images/textures/skybox/skybox", scene);
+        skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+        skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+        skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+        skyboxMaterial.disableLighting = true;
+        skybox.material = skyboxMaterial;
+
+        skybox.scaling.x = 7;
+        skybox.scaling.z = 7;
+        skybox.scaling.y = 3;
+
+        //var ground = BABYLON.Mesh.CreateGround("ground", 1400, 1400, 8, scene);
+        var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", 1400, 1400, 100, 0, 70, scene);
+        var groundMaterian = new BABYLON.StandardMaterial("ground", scene);
+        groundMaterian.diffuseTexture = new BABYLON.Texture("../Content/Images/textures/grounds/ground.jpg", scene);
+        groundMaterian.diffuseTexture.uScale = 6;
+        groundMaterian.diffuseTexture.vScale = 6;
+        groundMaterian.specularColor = new BABYLON.Color3(0, 0, 0);
+        ground.material = groundMaterian;
+
+        ground.position.y = -200;
+
+        //Set gravity for the scene (G force like, on Y-axis)
+        scene.gravity = new BABYLON.Vector3(0, -9, 0);
+
+        // Enable Collisions
+        scene.collisionsEnabled = true;
 
 
 
+        var tank = BABYLON.Mesh.CreateBox("tank", 10, scene);
+        tank.position.add(new BABYLON.Vector3(0, 30, 0));
+
+        //finally, say which mesh will be collisionable
+        ground.checkCollisions = true;
+        tank.checkCollisions = true;
+        tank.applyGravity = true;
+        camera.applyGravity = true;
+        camera.checkCollisions = true;
 
         return scene;
     };
-
 
     var scene = createScene();
 
@@ -49,5 +86,13 @@
         engine.resize();
     });
 
+
+    // DEBUG
+    window.scene = scene;
+
 })();
+
+function Debug(name, obj) {
+    window[name] = obj;
+}
 
