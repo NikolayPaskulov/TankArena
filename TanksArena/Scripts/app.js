@@ -5,14 +5,36 @@
     var canvas = document.getElementById("renderCanvas");
     var engine = new BABYLON.Engine(canvas, true);
 
+    // The function onload is loaded when the DOM has been loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        var scene = createScene();
+
+        var player = createPlayer(scene);
+
+        engine.runRenderLoop(function () {
+            scene.render();
+        });
+
+        // Resize
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+    }, false);
+
     var createScene = function () {
 
         // This creates a Babylon Scene object (not a shape/mesh)
         var scene = new BABYLON.Scene(engine);
 
+        Debug("scene", scene)
+
+        scene.enablePhysics(new BABYLON.Vector3(0, -100, 0), new BABYLON.CannonJSPlugin());
+
         // This creates and positions an free camera
         var camera = new BABYLON.FreeCamera("camera1",
-            new BABYLON.Vector3(0, 100, -20), scene);
+            new BABYLON.Vector3(54, 15, 8), scene);
+
+        Debug("camera", camera);
 
         // This targets the camera to scene origin
         camera.setTarget(new BABYLON.Vector3.Zero());
@@ -25,8 +47,6 @@
         //light.position.add(new BABYLON.Vector3(0, 50, 0));
 
         light.intensity = 0.6;
-
-        Debug("light", light);
 
         var scale = 120;
         var scaling = 30;
@@ -46,8 +66,12 @@
         skybox.scaling.z = scaling;
         skybox.scaling.y = 10;
 
-        //var ground = BABYLON.Mesh.CreateGround("ground", 1400, 1400, 8, scene);
-        var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 130, scene);
+        var ground = BABYLON.Mesh.CreateGround("ground", scale * scaling, scale * scaling, 8, scene);
+        ground.setPhysicsState(BABYLON.PhysicsEngine.BoxImpostor, { mass: 0, move: false });
+        //var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 130, scene, false, function () {
+        //    ground.setPhysicsState(BABYLON.PhysicsEngine.HeightmapImpostor, { mass: 0, move: false });
+        //});
+
         var groundMaterian = new BABYLON.StandardMaterial("ground", scene);
         groundMaterian.diffuseTexture = new BABYLON.Texture("../Content/Images/textures/grounds/ground.jpg", scene);
         groundMaterian.diffuseTexture.uScale = 6;
@@ -57,34 +81,20 @@
 
         ground.position.y = -350;
 
-        //Set gravity for the scene (G force like, on Y-axis)
-        scene.gravity = new BABYLON.Vector3(0, -9, 0);
-
-        // Enable Collisions
-        scene.collisionsEnabled = true;
-
-
-
-        var tank = BABYLON.Mesh.CreateBox("tank", 10, scene);
-        tank.position.add(new BABYLON.Vector3(0, 30, 0));
-
         return scene;
     };
 
-    var scene = createScene();
+    var createPlayer = function (scene) {
+        var player = new Player("niki", scene);
 
-    engine.runRenderLoop(function () {
-        scene.render();
-    });
+        Debug("player", player);
 
-    // Resize
-    window.addEventListener("resize", function () {
-        engine.resize();
-    });
-
-
-    // DEBUG
-    window.scene = scene;
+        player.AddToScene(new BABYLON.Vector3(0, 10, 0), function () {
+            //player.tank.body.setPhysicsState(BABYLON.PhysicsEngine.SphereImpostor, { friction: 25.5, restitution: 0.5, mass: 5000 });
+            player.camera.attachControl(canvas, false);
+            scene.activeCamera = player.camera;
+        });
+    };
 
 })();
 

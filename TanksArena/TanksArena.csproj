@@ -127,6 +127,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Assets\Tanks\T90a\textures\3fea26f0.jpg" />
+    <Content Include="Content\Assets\Tanks\T90a\textures\8430f8ee.jpg" />
+    <Content Include="Content\Assets\Tanks\T90a\textures\8eca739b.jpg" />
     <Content Include="Content\Css\main.css" />
     <Content Include="Content\Images\textures\grounds\gcanyon_height_bmp.png" />
     <Content Include="Content\Images\textures\grounds\ground.jpg" />
@@ -142,11 +145,16 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\KeyboardHelper.js" />
     <Content Include="Scripts\libs\babylon.core.js" />
     <Content Include="Scripts\libs\babylon.js" />
     <Content Include="Scripts\libs\babylon.max.js" />
     <Content Include="Scripts\libs\babylon.noworker.js" />
     <Content Include="Scripts\libs\cannon.js" />
+    <Content Include="Scripts\Player.js" />
+    <Content Include="Scripts\tanks\SimpleTank.js" />
+    <Content Include="Scripts\tanks\T90aTank.js" />
+    <Content Include="Scripts\tanks\Tank.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -162,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Assets\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +177,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
+    <Content Include="Content\Assets\Tanks\T90a\T90a.babylon" />
+    <Content Include="Content\Assets\Tanks\T90a\textures\3fea26f0.dds" />
+    <Content Include="Content\Assets\Tanks\T90a\textures\8430f8ee.dds" />
+    <Content Include="Content\Assets\Tanks\T90a\textures\8eca739b.dds" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <PropertyGroup>
