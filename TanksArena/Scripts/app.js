@@ -28,7 +28,7 @@
 
         Debug("scene", scene)
 
-        scene.enablePhysics(new BABYLON.Vector3(0, -100, 0), new BABYLON.CannonJSPlugin());
+        scene.enablePhysics(new BABYLON.Vector3(0, -10, 0), new BABYLON.OimoJSPlugin());
 
         // This creates and positions an free camera
         var camera = new BABYLON.FreeCamera("camera1",
@@ -53,6 +53,7 @@
 
         // Skybox
         var skybox = BABYLON.Mesh.CreateBox("skyBox", scale, scene);
+        //skybox.setPhysicsState(BABYLON.PhysicsEngine.BoxImpostor, { mass: 0, move: false })
         var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
         skyboxMaterial.backFaceCulling = false;
         skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../Content/Images/textures/skybox/skybox", scene);
@@ -90,7 +91,7 @@
         Debug("player", player);
 
         player.AddToScene(new BABYLON.Vector3(0, 10, 0), function () {
-            //player.tank.body.setPhysicsState(BABYLON.PhysicsEngine.SphereImpostor, { friction: 25.5, restitution: 0.5, mass: 5000 });
+            player.tank.body.setPhysicsState(BABYLON.PhysicsEngine.BoxImpostor, { mass: 5000 });
             player.camera.attachControl(canvas, false);
             scene.activeCamera = player.camera;
         });

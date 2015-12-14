@@ -4,7 +4,7 @@
 var T90aTank = (function () {
 
     function T90aTank(name, scene) {
-        Tank.call(this, name, 30, 30, 0.05, 1, 0.003, scene);
+        Tank.call(this, name, 30, 30, 0.1, 2, 0.009, scene);
         this.type = "T90a";
     }
 
@@ -16,20 +16,24 @@ var T90aTank = (function () {
 
         var assetManager = new BABYLON.AssetsManager(this.scene);
 
-        this.body = BABYLON.Mesh.CreateBox(_this.name + "t90a", 10, this.scene);
-        var bodyMat = new BABYLON.StandardMaterial("t90a", this.scene);
-        bodyMat.alpha = 0.0;
-        this.body.material = bodyMat;
-
         var t90aTask = assetManager.addMeshTask("t90a", "", "../../Content/Assets/Tanks/T90a/", "T90a.babylon");
 
         assetManager.load();
 
         t90aTask.onSuccess = function (result) {
-            for (var mesh in result.loadedMeshes) {
-                result.loadedMeshes[mesh].position = _this.body.position;
-                result.loadedMeshes[mesh].parent = _this.body;
-            }
+            Debug("result", result);
+
+            _this.body = result.loadedMeshes[0];
+            _this.body.scaling.y = 5;
+            _this.body.scaling.x = 7;
+            _this.body.scaling.z = 5;
+
+            var bodyMaterial = new BABYLON.StandardMaterial("bodyMaterial", _this.scene);
+            //bodyMaterial.diffuseTexture = new BABYLON.Texture('../../Content/Assets/Tanks/T90a/textures/3fea26f0.jpg', _this.scene);
+            //bodyMaterial.diffuseTexture = new BABYLON.Texture('../../Content/Assets/Tanks/T90a/textures/8430f8ee.jpg', _this.scene);
+            bodyMaterial.diffuseTexture = new BABYLON.Texture('../../Content/Assets/Tanks/T90a/textures/8eca739b.jpg', _this.scene);
+
+            _this.body.material = bodyMaterial;
 
             if (success && typeof success == 'function')
                 success(true);

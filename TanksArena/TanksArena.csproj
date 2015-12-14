@@ -130,6 +130,11 @@
     <Content Include="Content\Assets\Tanks\T90a\textures\3fea26f0.jpg" />
     <Content Include="Content\Assets\Tanks\T90a\textures\8430f8ee.jpg" />
     <Content Include="Content\Assets\Tanks\T90a\textures\8eca739b.jpg" />
+    <Content Include="Content\Assets\TestTextures\Chaineface.jpg" />
+    <Content Include="Content\Assets\TestTextures\ChainInt.jpg" />
+    <Content Include="Content\Assets\TestTextures\Degrade.jpg" />
+    <Content Include="Content\Assets\TestTextures\Refsol.jpg" />
+    <Content Include="Content\Assets\TestTextures\Sol.jpg" />
     <Content Include="Content\Css\main.css" />
     <Content Include="Content\Images\textures\grounds\gcanyon_height_bmp.png" />
     <Content Include="Content\Images\textures\grounds\ground.jpg" />
@@ -152,6 +157,7 @@
     <Content Include="Scripts\libs\babylon.noworker.js" />
     <Content Include="Scripts\libs\cannon.js" />
     <Content Include="Scripts\Player.js" />
+    <Content Include="Scripts\tanks\Panzer38Tank.js" />
     <Content Include="Scripts\tanks\SimpleTank.js" />
     <Content Include="Scripts\tanks\T90aTank.js" />
     <Content Include="Scripts\tanks\Tank.js" />
@@ -181,6 +187,8 @@
     <Content Include="Content\Assets\Tanks\T90a\textures\3fea26f0.dds" />
     <Content Include="Content\Assets\Tanks\T90a\textures\8430f8ee.dds" />
     <Content Include="Content\Assets\Tanks\T90a\textures\8eca739b.dds" />
+    <Content Include="Content\Assets\TestTextures\skull.babylon" />
+    <Content Include="Content\Assets\TestTextures\v8.babylon" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <PropertyGroup>

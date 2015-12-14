@@ -3,7 +3,7 @@
 var SimpleTank = (function () {
 
     function SimpleTank(name, scene) {
-        Tank.call(this, name, 30, 30, 0.05, 1, 0.003, scene);
+        Tank.call(this, name, 30, 30, 0.5, 5, 0.03, scene);
         this.type = "simple";
     }
 
