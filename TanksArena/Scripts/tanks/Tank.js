@@ -12,6 +12,7 @@ var Tank = (function () {
         this.rotationSpeed = rotationSpeed;
         this.scene = scene;
         this.body = null;
+        this.gun = null;
         this.speed = 0;
         this.keysHelper = new KeyboardHelper();
     }
@@ -36,12 +37,12 @@ var Tank = (function () {
                 if (_this.keysHelper.IsKeyPressed(_this.keysHelper.keys.W) ||
                     _this.keysHelper.IsKeyPressed(_this.keysHelper.keys.Up)) {
                     if (_this.speed < _this.maxSpeed) {
-                        _this.speed += _this.acceleration;
+                        _this.speed += _this.acceleration * _this.scene.getAnimationRatio();
                     }
                 } else if (_this.keysHelper.IsKeyPressed(_this.keysHelper.keys.S) ||
                            _this.keysHelper.IsKeyPressed(_this.keysHelper.keys.Down)) {
                     if (_this.speed > (_this.maxSpeed * -1) / 2) {
-                        _this.speed -= _this.acceleration / 2;
+                        _this.speed -= (_this.acceleration * _this.scene.getAnimationRatio()) / 2;
                     }
                 }
 
@@ -50,17 +51,18 @@ var Tank = (function () {
                     if (_this.speed != 0) {
                         if (_this.keysHelper.IsKeyPressed(_this.keysHelper.keys.A) ||
                            _this.keysHelper.IsKeyPressed(_this.keysHelper.keys.Left)) {
-                            _this.body.rotation.y -= _this.rotationSpeed;
+                            _this.body.rotation.y -= _this.rotationSpeed * _this.scene.getAnimationRatio();
                         } else if (_this.keysHelper.IsKeyPressed(_this.keysHelper.keys.D) ||
                            _this.keysHelper.IsKeyPressed(_this.keysHelper.keys.Right)) {
-                            _this.body.rotation.y += _this.rotationSpeed;
+                            _this.body.rotation.y += _this.rotationSpeed * _this.scene.getAnimationRatio();
                         }
                     }
 
                     _this.body.position.z += Math.cos(_this.body.rotation.y) * _this.speed;
                     _this.body.position.x += Math.sin(_this.body.rotation.y) * _this.speed;
-                    _this.body.updatePhysicsBodyPosition();
                 }
+
+                var pickResult = _this.scene.pick(_this.scene.pointerX, _this.scene.pointerY);
 
                 _this.AfterUpdate();
             }

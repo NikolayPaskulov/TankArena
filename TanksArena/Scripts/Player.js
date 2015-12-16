@@ -18,6 +18,7 @@ var Player = (function () {
         this.tank.Initialize(function (success) {
             _this.tank.BeforeUpdate = function () {
                 _this.camera.target = _this.tank.body.position;
+                _this.tank.gun.rotation = _this.camera.rotation;
             }
 
             if (success) {
