@@ -11,6 +11,8 @@
 
         var player = createPlayer(scene);
 
+
+
         engine.runRenderLoop(function () {
             scene.render();
         });
@@ -25,16 +27,12 @@
 
         // This creates a Babylon Scene object (not a shape/mesh)
         var scene = new BABYLON.Scene(engine);
-
-        Debug("scene", scene)
-
-        scene.enablePhysics(new BABYLON.Vector3(0, -10, 0), new BABYLON.OimoJSPlugin());
+        scene.gravity = new BABYLON.Vector3(0, -10, 0);
+        scene.collisionsEnabled = this;
 
         // This creates and positions an free camera
         var camera = new BABYLON.FreeCamera("camera1",
             new BABYLON.Vector3(54, 15, 8), scene);
-
-        Debug("camera", camera);
 
         // This targets the camera to scene origin
         camera.setTarget(new BABYLON.Vector3.Zero());
@@ -43,8 +41,8 @@
         camera.attachControl(canvas, false);
 
         // This creates a light - aimed 0,1,0 - to the sky.
-        var light = new BABYLON.HemisphericLight("sun", new BABYLON.Vector3(0, 0, 0), scene);
-        //light.position.add(new BABYLON.Vector3(0, 50, 0));
+        var light = new BABYLON.DirectionalLight("sun", new BABYLON.Vector3(-1, -2, -1), scene);
+        light.position = new BABYLON.Vector3(0, 40, 0);
 
         light.intensity = 0.6;
 
@@ -53,7 +51,6 @@
 
         // Skybox
         var skybox = BABYLON.Mesh.CreateBox("skyBox", scale, scene);
-        //skybox.setPhysicsState(BABYLON.PhysicsEngine.BoxImpostor, { mass: 0, move: false })
         var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
         skyboxMaterial.backFaceCulling = false;
         skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../Content/Images/textures/skybox/skybox", scene);
@@ -67,11 +64,8 @@
         skybox.scaling.z = scaling;
         skybox.scaling.y = 10;
 
-        var ground = BABYLON.Mesh.CreateGround("ground", scale * scaling, scale * scaling, 8, scene);
-        ground.setPhysicsState(BABYLON.PhysicsEngine.BoxImpostor, { mass: 0, move: false });
-        //var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 130, scene, false, function () {
-        //    ground.setPhysicsState(BABYLON.PhysicsEngine.HeightmapImpostor, { mass: 0, move: false });
-        //});
+        var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 130, scene, false, function () {
+        });
 
         var groundMaterian = new BABYLON.StandardMaterial("ground", scene);
         groundMaterian.diffuseTexture = new BABYLON.Texture("../Content/Images/textures/grounds/ground.jpg", scene);
@@ -82,19 +76,35 @@
 
         ground.position.y = -350;
 
+        var player = new Player("niki", scene);
+
+        Debug("player", player);
+        Debug("ground", ground);
+        Debug("scene", scene);
+        Debug("camera", camera);
+        Debug("light", light);
+
+        var physicsEngine = new PhysicsEngine(new BABYLON.Vector3(0, -10, 0), ground, scene);
+
+        //var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
+        //ground.receiveShadows = true;
+
+        player.AddToScene(new BABYLON.Vector3(0, -300, 0), function () {
+            player.camera.attachControl(canvas, false);
+            scene.activeCamera = player.camera;
+            physicsEngine.AddMesh(player.tank.body);
+            //shadowGenerator.getShadowMap().renderList.push(player.tank.body);
+        });
+
+        scene.registerBeforeRender(function () {
+            physicsEngine.UpdateMeshes();
+        });
+
         return scene;
     };
 
     var createPlayer = function (scene) {
-        var player = new Player("niki", scene);
 
-        Debug("player", player);
-
-        player.AddToScene(new BABYLON.Vector3(0, 10, 0), function () {
-            player.tank.body.setPhysicsState(BABYLON.PhysicsEngine.BoxImpostor, { mass: 5000 });
-            player.camera.attachControl(canvas, false);
-            scene.activeCamera = player.camera;
-        });
     };
 
 })();

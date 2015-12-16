@@ -156,6 +156,7 @@
     <Content Include="Scripts\libs\babylon.max.js" />
     <Content Include="Scripts\libs\babylon.noworker.js" />
     <Content Include="Scripts\libs\cannon.js" />
+    <Content Include="Scripts\PhysicsEngine.js" />
     <Content Include="Scripts\Player.js" />
     <Content Include="Scripts\tanks\Panzer38Tank.js" />
     <Content Include="Scripts\tanks\SimpleTank.js" />
