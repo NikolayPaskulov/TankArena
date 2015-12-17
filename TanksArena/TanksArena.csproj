@@ -149,6 +149,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\Bullets\BasicBullet.js" />
+    <Content Include="Scripts\Bullets\BulletFactory.js" />
+    <Content Include="Scripts\Bullets\BulletsManager.js" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\KeyboardHelper.js" />
     <Content Include="Scripts\libs\babylon.core.js" />
@@ -158,10 +161,11 @@
     <Content Include="Scripts\libs\cannon.js" />
     <Content Include="Scripts\PhysicsEngine.js" />
     <Content Include="Scripts\Player.js" />
-    <Content Include="Scripts\tanks\Panzer38Tank.js" />
-    <Content Include="Scripts\tanks\SimpleTank.js" />
-    <Content Include="Scripts\tanks\T90aTank.js" />
-    <Content Include="Scripts\tanks\Tank.js" />
+    <Content Include="Scripts\Tanks\Panzer38Tank.js" />
+    <Content Include="Scripts\Tanks\SimpleTank.js" />
+    <Content Include="Scripts\Tanks\T90aTank.js" />
+    <Content Include="Scripts\Tanks\Tank.js" />
+    <Content Include="Scripts\Utils.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
