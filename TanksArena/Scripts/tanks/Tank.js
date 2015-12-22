@@ -39,19 +39,11 @@ var Tank = (function () {
 
                 _this.BulletsManager.Update();
 
-               
+                _this.UpdateTankSpeed();
 
                 if (_this.body && _this.body.position) {
 
-                    if (_this.speed != 0) {
-                        if (_this.keysHelper.IsKeyPressed(_this.keysHelper.keys.A) ||
-                           _this.keysHelper.IsKeyPressed(_this.keysHelper.keys.Left)) {
-                            _this.body.rotation.y -= _this.rotationSpeed * _this.scene.getAnimationRatio();
-                        } else if (_this.keysHelper.IsKeyPressed(_this.keysHelper.keys.D) ||
-                           _this.keysHelper.IsKeyPressed(_this.keysHelper.keys.Right)) {
-                            _this.body.rotation.y += _this.rotationSpeed * _this.scene.getAnimationRatio();
-                        }
-                    }
+                    _this.UpdateTankRotation();
 
                     _this.body.position.z += Math.cos(_this.body.rotation.y) * _this.speed;
                     _this.body.position.x += Math.sin(_this.body.rotation.y) * _this.speed;
@@ -79,20 +71,14 @@ var Tank = (function () {
     }
 
     Tank.prototype.UpdateTankRotation = function () {
-        if (this.body && this.body.position) {
-
-            if (_this.speed != 0) {
-                if (_this.keysHelper.IsKeyPressed(_this.keysHelper.keys.A) ||
-                   _this.keysHelper.IsKeyPressed(_this.keysHelper.keys.Left)) {
-                    _this.body.rotation.y -= _this.rotationSpeed * _this.scene.getAnimationRatio();
-                } else if (_this.keysHelper.IsKeyPressed(_this.keysHelper.keys.D) ||
-                   _this.keysHelper.IsKeyPressed(_this.keysHelper.keys.Right)) {
-                    _this.body.rotation.y += _this.rotationSpeed * _this.scene.getAnimationRatio();
-                }
+        if (this.speed != 0) {
+            if (this.keysHelper.IsKeyPressed(this.keysHelper.keys.A) ||
+               this.keysHelper.IsKeyPressed(this.keysHelper.keys.Left)) {
+                this.body.rotation.y -= this.rotationSpeed * this.scene.getAnimationRatio();
+            } else if (this.keysHelper.IsKeyPressed(this.keysHelper.keys.D) ||
+               this.keysHelper.IsKeyPressed(this.keysHelper.keys.Right)) {
+                this.body.rotation.y += this.rotationSpeed * this.scene.getAnimationRatio();
             }
-
-            _this.body.position.z += Math.cos(_this.body.rotation.y) * _this.speed;
-            _this.body.position.x += Math.sin(_this.body.rotation.y) * _this.speed;
         }
     }
 

@@ -9,10 +9,6 @@
     document.addEventListener("DOMContentLoaded", function () {
         var scene = createScene();
 
-        var player = createPlayer(scene);
-
-
-
         engine.runRenderLoop(function () {
             scene.render();
         });
@@ -27,8 +23,6 @@
 
         // This creates a Babylon Scene object (not a shape/mesh)
         var scene = new BABYLON.Scene(engine);
-        scene.gravity = new BABYLON.Vector3(0, -10, 0);
-        scene.collisionsEnabled = this;
 
         // This creates and positions an free camera
         var camera = new BABYLON.FreeCamera("camera1",
@@ -64,7 +58,7 @@
         skybox.scaling.z = scaling;
         skybox.scaling.y = 10;
 
-        var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 130, scene, false, function () {
+        var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 530, scene, false, function () {
         });
 
         var groundMaterian = new BABYLON.StandardMaterial("ground", scene);
@@ -96,15 +90,12 @@
             //shadowGenerator.getShadowMap().renderList.push(player.tank.body);
         });
 
+
         scene.registerBeforeRender(function () {
             physicsEngine.UpdateMeshes();
         });
 
         return scene;
-    };
-
-    var createPlayer = function (scene) {
-
     };
 
 })();

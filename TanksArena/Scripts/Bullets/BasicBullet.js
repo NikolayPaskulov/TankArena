@@ -10,7 +10,7 @@ var BasicBullet = (function () {
         this.type = type;
         this.dmg = tankAttack + this.bulletDmg;
         this.scene = scene;
-        this.body = BABYLON.Mesh.CreateSphere("bullet" + Math.random(), 16, 1, scene);
+        this.body = BABYLON.Mesh.CreateSphere("bullet" + Math.random(), 8, 1, scene);
     }
 
     BasicBullet.prototype.Update = function () {

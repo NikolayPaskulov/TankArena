@@ -161,7 +161,7 @@
     <Content Include="Scripts\libs\cannon.js" />
     <Content Include="Scripts\PhysicsEngine.js" />
     <Content Include="Scripts\Player.js" />
-    <Content Include="Scripts\Tanks\Panzer38Tank.js" />
+    <Content Include="Scripts\Tanks\IS7Tank.js" />
     <Content Include="Scripts\Tanks\SimpleTank.js" />
     <Content Include="Scripts\Tanks\T90aTank.js" />
     <Content Include="Scripts\Tanks\Tank.js" />
@@ -194,6 +194,10 @@
     <Content Include="Content\Assets\Tanks\T90a\textures\8eca739b.dds" />
     <Content Include="Content\Assets\TestTextures\skull.babylon" />
     <Content Include="Content\Assets\TestTextures\v8.babylon" />
+    <Content Include="Content\Assets\Tanks\IS7\IS7.babylon" />
+    <Content Include="Content\Assets\Tanks\IS7\textures\IS-7.dds" />
+    <Content Include="Content\Assets\Tanks\IS7\textures\IS-7_NM.dds" />
+    <Content Include="Content\Assets\Tanks\IS7\textures\IS-7_SM.dds" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <PropertyGroup>
