@@ -24,6 +24,11 @@
         // This creates a Babylon Scene object (not a shape/mesh)
         var scene = new BABYLON.Scene(engine);
 
+        //scene.registerBeforeRender(function () {
+        //    var pickInfo = scene.pick(scene.pointerX, scene.pointerY);
+        //    console.log(pickInfo);
+        //});
+
         // This creates and positions an free camera
         var camera = new BABYLON.FreeCamera("camera1",
             new BABYLON.Vector3(54, 15, 8), scene);
@@ -58,7 +63,7 @@
         skybox.scaling.z = scaling;
         skybox.scaling.y = 10;
 
-        var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 530, scene, false, function () {
+        var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 250, scene, false, function () {
         });
 
         var groundMaterian = new BABYLON.StandardMaterial("ground", scene);
@@ -79,11 +84,13 @@
         Debug("light", light);
 
         var physicsEngine = new PhysicsEngine(new BABYLON.Vector3(0, -10, 0), ground, scene);
+        Debug("physicsEngine", physicsEngine);
+
 
         //var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
         //ground.receiveShadows = true;
 
-        player.AddToScene(new BABYLON.Vector3(0, -300, 0), function () {
+        player.AddToScene(new BABYLON.Vector3(0, -50, 0), function () {
             player.camera.attachControl(canvas, false);
             scene.activeCamera = player.camera;
             physicsEngine.AddMesh(player.tank.body);

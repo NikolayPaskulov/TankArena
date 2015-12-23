@@ -136,6 +136,7 @@
     <Content Include="Content\Assets\TestTextures\Refsol.jpg" />
     <Content Include="Content\Assets\TestTextures\Sol.jpg" />
     <Content Include="Content\Css\main.css" />
+    <Content Include="Content\Images\crosshair.png" />
     <Content Include="Content\Images\textures\grounds\gcanyon_height_bmp.png" />
     <Content Include="Content\Images\textures\grounds\ground.jpg" />
     <Content Include="Content\Images\textures\grounds\terrainbasic.png" />
@@ -214,7 +215,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49972</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -6,6 +6,7 @@ var Player = (function () {
     function Player(name, scene) {
         this.name = name;
         this.tank = new T90aTank(name, scene);
+        this.scene = scene;
         this.camera = new BABYLON.ArcRotateCamera(name + "Camera", 1, 0.8, 50, BABYLON.Vector3.Zero(), scene);
         this.camera.keysUp = [];
         this.camera.keysDown = [];
@@ -18,6 +19,7 @@ var Player = (function () {
         this.tank.Initialize(function (success) {
             _this.tank.BeforeUpdate = function () {
                 _this.camera.target = _this.tank.body.position;
+                //var pickInfo = scene.pick(window.innerWidth / 2, window.innerHeight / 2);
             }
 
             if (success) {

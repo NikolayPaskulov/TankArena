@@ -12,7 +12,7 @@ var PhysicsEngine = (function () {
 
     PhysicsEngine.prototype.AddMesh = function (mesh) {
         if (!this._isMeshAdded(mesh)) {
-            mesh._customEngine = { cach: { rotationX : mesh.rotation.x }};
+            mesh._customEngine = { cach: { rotationX : mesh.rotation.x, rotationZ : 0 }};
             this.meshes.push(mesh);
         }
     }
@@ -38,10 +38,11 @@ var PhysicsEngine = (function () {
         var ground = this.ground;
         var groundBox = this.ground.getBoundingInfo().boundingBox;
         var meshBox = mesh.getBoundingInfo().boundingBox;
-        var width = Math.abs(meshBox.vectorsWorld[0].x - meshBox.vectorsWorld[3].x);
-        var height = meshBox.vectorsWorld[0].x - meshBox.vectorsWorld[2].x;
+        var width = this.CalculateDistance(meshBox.vectorsWorld[0], meshBox.vectorsWorld[3]);
+        var height = this.CalculateDistance(meshBox.vectorsWorld[0], meshBox.vectorsWorld[2]);
         var direction = new BABYLON.Vector3(0, -1, 0);
         var cachRotationX = mesh._customEngine.cach.rotationX;
+        var cachRotationZ = mesh._customEngine.cach.rotationZ;
         
         var frontLeft = createPickInfo(meshBox.vectorsWorld[0]);
         var backLeft = createPickInfo(meshBox.vectorsWorld[3]);
@@ -49,12 +50,25 @@ var PhysicsEngine = (function () {
         var frontRight = createPickInfo(meshBox.vectorsWorld[2]);
         var backRight = createPickInfo(meshBox.vectorsWorld[5]);
 
-        var fromMin = Math.min(frontLeft.distance, frontRight.distance);
+        var frontMin = Math.min(frontLeft.distance, frontRight.distance);
         var backMin = Math.min(backLeft.distance, backRight.distance);
-        
-        var h = Math.abs(fromMin - backMin);
 
-        mesh.rotation.x = cachRotationX + Math.tan(h / width);
+        var frontH = frontMin - backMin;
+
+        mesh.rotation.x = cachRotationX + Math.atan2(frontH, width);
+
+        // ----------------------
+
+        //var leftMin = Math.min(frontLeft.distance, backLeft.distance);
+        //var rightMin = Math.min(frontRight.distance, backRight.distance);
+
+        //var sideH = leftMin - rightMin;
+
+        //var zRotation = cachRotationZ - Math.atan2(sideH, height);
+        //mesh._customEngine.cach.rotationZ = zRotation;
+
+        ////mesh.rotate(BABYLON.Axis.Z, zRotation, BABYLON.Space.WORLD);
+
 
         function createPickInfo(vector) {
             var ray = new BABYLON.Ray(new BABYLON.Vector3(vector.x, groundBox.maximumWorld.y + 1, vector.z), direction);
@@ -87,6 +101,13 @@ var PhysicsEngine = (function () {
         return this.meshes.indexOf(mesh) >= 0;
     }
 
+    PhysicsEngine.prototype.CalculateDistance = function (vector1, vector2) {
+        var x = (vector1.x - (vector2.x));
+        var y = (vector1.y - (vector2.y));
+        var z = (vector1.z - (vector2.z));
+
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+    }
 
 
     return PhysicsEngine;
