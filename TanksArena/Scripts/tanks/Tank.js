@@ -18,13 +18,17 @@ var Tank = (function () {
         this.speed = 0;
         this.maxGunRotation = 0.5;
         this.keysHelper = new KeyboardHelper();
-        this.BulletsManager = new BulletsManager(3000, 3, scene);
+        this.BulletsManager = new BulletsManager(10, scene);
     }
 
     Tank.prototype.Initialize = function (success) {
         this.Build(success);
         this.Update();
         return this;
+    }
+
+    Tank.prototype.Fire = function (impact) {
+        this.BulletsManager.Fire(this.gun.getBoundingInfo().boundingBox.center, impact, this.BulletsManager.Types.BASIC_BULLET, this.attack);
     }
 
     Tank.prototype.Build = function () { };

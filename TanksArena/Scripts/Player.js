@@ -30,6 +30,10 @@ var Player = (function () {
                 _this.camera.radius = 90;
                 _this.camera.heightOffset = 25;
                 _this.camera.rotationOffset = 180;
+
+                _this.scene.onPointerDown = function (evt, pickResult) {
+                    _this.tank.Fire(pickResult.pickedPoint);
+                }
             }
 
             if (onReady && typeof onReady == 'function') {

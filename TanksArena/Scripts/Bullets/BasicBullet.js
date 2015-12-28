@@ -2,19 +2,22 @@
 
 var BasicBullet = (function () {
 
-    function BasicBullet(direction, type, tankAttack, scene) {
-        this.speed = 100;
+    function BasicBullet(origin, impact, type, tankAttack, scene) {
+        this.speed = 30;
         this.maxDistance = 1000;
         this.bulletDmg = 0;
-        this.direction = direction;
+        this.origin = origin,
+        this.impact = impact;
         this.type = type;
         this.dmg = tankAttack + this.bulletDmg;
         this.scene = scene;
-        this.body = BABYLON.Mesh.CreateSphere("bullet" + Math.random(), 8, 1, scene);
+        this.body = BABYLON.Mesh.CreateSphere("bullet" + Math.random(), 8, 0.5, scene);
+        this.body.position = this.origin;
     }
 
     BasicBullet.prototype.Update = function () {
-        // Updating Position.
+        var directionVector = this.body.position.subtract(this.impact).normalize();
+        this.body.position = this.body.position.subtract(directionVector.scale(30));
     }
 
     return BasicBullet;

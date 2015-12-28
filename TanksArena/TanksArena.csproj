@@ -137,6 +137,7 @@
     <Content Include="Content\Assets\TestTextures\Sol.jpg" />
     <Content Include="Content\Css\main.css" />
     <Content Include="Content\Images\crosshair.png" />
+    <Content Include="Content\Images\textures\flare.png" />
     <Content Include="Content\Images\textures\grounds\gcanyon_height_bmp.png" />
     <Content Include="Content\Images\textures\grounds\ground.jpg" />
     <Content Include="Content\Images\textures\grounds\terrainbasic.png" />
@@ -153,6 +154,7 @@
     <Content Include="Scripts\Bullets\BasicBullet.js" />
     <Content Include="Scripts\Bullets\BulletFactory.js" />
     <Content Include="Scripts\Bullets\BulletsManager.js" />
+    <Content Include="Scripts\Bullets\FireBullet.js" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\KeyboardHelper.js" />
     <Content Include="Scripts\libs\babylon.core.js" />

@@ -2,26 +2,23 @@
 
 var BulletsManager = (function () {
 
-    function BulletsManager(cooldown, attacks, scene) {
+    function BulletsManager(cooldown, scene) {
         this.cooldown = cooldown;
-        this.attacks = attacks;
         this.scene = scene;
-
         this.bullets = [];
         this.Types = BulletFactory.Types;
         this.reloading = false;
     }
 
-    BulletsManager.prototype.Fire = function (direction, type, tankAttack) {
-        this.reloading = true;
-        this.attacks -= 1;
+    BulletsManager.prototype.Fire = function (origin, impact, type, tankAttack) {
+        if (!this.reloading) {
+            this.reloading = true;
 
-        var bullet = BulletFactory.Create(direction, type, tankAttack, this.scene);
-        this.bullets.push(bullet);
+            var bullet = BulletFactory.Create(origin, impact, type, tankAttack, this.scene);
+            this.bullets.push(bullet);
 
-        // Fire Logic.
-
-        this.Reload();
+            this.Reload();
+        }
     }
 
     BulletsManager.prototype.Update = function () {
@@ -34,7 +31,6 @@ var BulletsManager = (function () {
         var _this = this;
 
         setTimeout(function () {
-            _this.attacks += 1;
             _this.reloading = false;
         }, this.cooldown);
     }
