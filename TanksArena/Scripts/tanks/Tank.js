@@ -16,6 +16,7 @@ var Tank = (function () {
         this.body = null;
         this.gun = null;
         this.speed = 0;
+        this.maxGunRotation = 0.5;
         this.keysHelper = new KeyboardHelper();
         this.BulletsManager = new BulletsManager(3000, 3, scene);
     }
@@ -44,6 +45,7 @@ var Tank = (function () {
                 if (_this.body && _this.body.position) {
 
                     _this.UpdateTankRotation();
+                    _this.UpdateGunRotation();
 
                     _this.body.position.z += Math.cos(_this.body.rotation.y) * _this.speed;
                     _this.body.position.x += Math.sin(_this.body.rotation.y) * _this.speed;
@@ -80,6 +82,12 @@ var Tank = (function () {
                 this.body.rotation.y += this.rotationSpeed * this.scene.getAnimationRatio();
             }
         }
+    }
+
+    Tank.prototype.UpdateGunRotation = function () {
+        var screenWidth = window.innerWidth;
+        var center = screenWidth / 2;
+        this.gun.rotation.z = this.maxGunRotation / 100 * ((this.scene.pointerX - center) / center * 100);
     }
 
     return Tank;

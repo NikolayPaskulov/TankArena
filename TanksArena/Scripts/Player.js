@@ -7,7 +7,7 @@ var Player = (function () {
         this.name = name;
         this.tank = new T90aTank(name, scene);
         this.scene = scene;
-        this.camera = new BABYLON.ArcRotateCamera(name + "Camera", 1, 0.8, 50, BABYLON.Vector3.Zero(), scene);
+        this.camera = new BABYLON.FollowCamera(name + "Camera", BABYLON.Vector3.Zero(), scene),
         this.camera.keysUp = [];
         this.camera.keysDown = [];
         this.camera.keysLeft = [];
@@ -18,15 +18,18 @@ var Player = (function () {
         _this = this;
         this.tank.Initialize(function (success) {
             _this.tank.BeforeUpdate = function () {
-                _this.camera.target = _this.tank.body.position;
-                //var pickInfo = scene.pick(window.innerWidth / 2, window.innerHeight / 2);
+                _this.camera.rotationOffset = _this.tank.speed < 0 ? 0 : 180;
             }
 
             if (success) {
-                _this.camera.setPosition = new BABYLON.Vector3(position.x, position.y, position.z);
                 _this.tank.body.position.x = position.x;
                 _this.tank.body.position.y = position.y;
                 _this.tank.body.position.z = position.z;
+
+                _this.camera.target = _this.tank.body;
+                _this.camera.radius = 90;
+                _this.camera.heightOffset = 25;
+                _this.camera.rotationOffset = 180;
             }
 
             if (onReady && typeof onReady == 'function') {
