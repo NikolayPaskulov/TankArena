@@ -3,7 +3,7 @@
 var BasicBullet = (function () {
 
     function BasicBullet(origin, impact, type, tankAttack, scene) {
-        this.speed = 30;
+        this.speed = 0.5;
         this.maxDistance = 1000;
         this.bulletDmg = 0;
         this.origin = origin,
@@ -17,7 +17,11 @@ var BasicBullet = (function () {
 
     BasicBullet.prototype.Update = function () {
         var directionVector = this.body.position.subtract(this.impact).normalize();
-        this.body.position = this.body.position.subtract(directionVector.scale(30));
+        this.body.position = this.body.position.subtract(directionVector.scale(this.speed));
+    }
+
+    BasicBullet.prototype.Remove = function () {
+        this.body.dispose();
     }
 
     return BasicBullet;

@@ -24,7 +24,12 @@ var BulletsManager = (function () {
     BulletsManager.prototype.Update = function () {
         for (var i = 0, len = this.bullets.length; i < len; i++) {
             this.bullets[i].Update();
+            this.CheckCollision(this.bullets[i]);
         }
+    }
+
+    BulletsManager.prototype.CheckCollision = function (bullet) {
+
     }
 
     BulletsManager.prototype.Reload = function () {

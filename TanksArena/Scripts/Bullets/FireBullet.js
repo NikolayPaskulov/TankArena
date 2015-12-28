@@ -5,7 +5,7 @@ var FireBullet = (function () {
 
     function FireBullet(origin, impact, type, tankAttack, scene) {
         BasicBullet.call(this, origin, impact, type, tankAttack, scene);
-        this.CreateParticleSystem();
+        this.fireSystem = this.CreateParticleSystem();
     }
 
     FireBullet.prototype = Object.create(BasicBullet.prototype);
@@ -60,6 +60,14 @@ var FireBullet = (function () {
 
         // Start the particle system
         fireSystem.start();
+
+        return fireSystem;
+    }
+
+    FireBullet.prototype.Remove = function () {
+        this.fireSystem.stop();
+        this.fireSystem.dispose();
+        //BasicBullet.prototype.Remove.call(this);
     }
 
     return FireBullet;

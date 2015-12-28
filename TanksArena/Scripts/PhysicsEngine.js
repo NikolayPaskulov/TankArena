@@ -57,19 +57,6 @@ var PhysicsEngine = (function () {
 
         mesh.rotation.x = cachRotationX + Math.atan2(frontH, width);
 
-        // ----------------------
-
-        //var leftMin = Math.min(frontLeft.distance, backLeft.distance);
-        //var rightMin = Math.min(frontRight.distance, backRight.distance);
-
-        //var sideH = leftMin - rightMin;
-
-        //var zRotation = cachRotationZ - Math.atan2(sideH, height);
-        //mesh._customEngine.cach.rotationZ = zRotation;
-
-        ////mesh.rotate(BABYLON.Axis.Z, zRotation, BABYLON.Space.WORLD);
-
-
         function createPickInfo(vector) {
             var ray = new BABYLON.Ray(new BABYLON.Vector3(vector.x, groundBox.maximumWorld.y + 1, vector.z), direction);
             var worldInverse = new BABYLON.Matrix();
