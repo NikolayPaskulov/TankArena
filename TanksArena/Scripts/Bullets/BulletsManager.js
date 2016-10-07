@@ -61,7 +61,5 @@ var BulletsManager = (function () {
         }, this.cooldown);
     }
 
-
-
     return BulletsManager;
 })();
