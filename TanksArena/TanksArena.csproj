@@ -135,8 +135,10 @@
     <Content Include="Content\Assets\TestTextures\Degrade.jpg" />
     <Content Include="Content\Assets\TestTextures\Refsol.jpg" />
     <Content Include="Content\Assets\TestTextures\Sol.jpg" />
+    <Content Include="Content\Audio\fire.mp3" />
     <Content Include="Content\Css\main.css" />
     <Content Include="Content\Images\crosshair.png" />
+    <Content Include="Content\Images\textures\fireParticle.png" />
     <Content Include="Content\Images\textures\flare.png" />
     <Content Include="Content\Images\textures\grounds\gcanyon_height_bmp.png" />
     <Content Include="Content\Images\textures\grounds\ground.jpg" />
@@ -147,9 +149,11 @@
     <Content Include="Content\Images\textures\skybox\skybox_px.jpg" />
     <Content Include="Content\Images\textures\skybox\skybox_py.jpg" />
     <Content Include="Content\Images\textures\skybox\skybox_pz.jpg" />
+    <Content Include="Content\Images\textures\smoke3.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\AnimationsHelper.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\Bullets\BasicBullet.js" />
     <Content Include="Scripts\Bullets\BulletFactory.js" />

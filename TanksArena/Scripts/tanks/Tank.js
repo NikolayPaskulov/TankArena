@@ -18,7 +18,10 @@ var Tank = (function () {
         this.speed = 0;
         this.maxGunRotation = 0.5;
         this.keysHelper = new KeyboardHelper();
-        this.BulletsManager = new BulletsManager(10, scene);
+        this.BulletsManager = new BulletsManager(this, 500, scene);
+        this.music = {
+            fire : new BABYLON.Sound("Music", "../../Content/Audio/fire.mp3", scene, function () { })
+        }
     }
 
     Tank.prototype.Initialize = function (success) {
@@ -28,7 +31,10 @@ var Tank = (function () {
     }
 
     Tank.prototype.Fire = function (impact) {
-        this.BulletsManager.Fire(this.gun.getBoundingInfo().boundingBox.center, impact, this.BulletsManager.Types.BASIC_BULLET, this.attack);
+        var self = this;
+        this.BulletsManager.Fire(this.gun.getBoundingInfo().boundingBox.center, impact, this.BulletsManager.Types.BASIC_BULLET, this.attack, function () {
+            self.music.fire.play();
+        });
     }
 
     Tank.prototype.Build = function () { };
