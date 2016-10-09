@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TanksArenaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -153,26 +154,40 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\AnimationsHelper.js" />
-    <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\Bullets\BasicBullet.js" />
-    <Content Include="Scripts\Bullets\BulletFactory.js" />
-    <Content Include="Scripts\Bullets\BulletsManager.js" />
-    <Content Include="Scripts\Bullets\FireBullet.js" />
-    <Content Include="Scripts\common.js" />
-    <Content Include="Scripts\KeyboardHelper.js" />
+    <Content Include="Scripts\common\AnimationsHelper.js" />
+    <Content Include="Scripts\common\Controls.js" />
+    <Content Include="Scripts\common\MathHelper.js" />
+    <Content Include="Scripts\common\SoundEffectsService.js" />
     <Content Include="Scripts\libs\babylon.core.js" />
     <Content Include="Scripts\libs\babylon.js" />
     <Content Include="Scripts\libs\babylon.max.js" />
+    <Content Include="Scripts\libs\Oimo.js" />
+    <Content Include="Scripts\test.js" />
+    <Content Include="Scripts\v1\app.js" />
+    <Content Include="Scripts\v1\Bullets\BasicBullet.js" />
+    <Content Include="Scripts\v1\Bullets\BulletFactory.js" />
+    <Content Include="Scripts\v1\Bullets\BulletsManager.js" />
+    <Content Include="Scripts\v1\Bullets\FireBullet.js" />
+    <Content Include="Scripts\common\KeyboardHelper.js" />
     <Content Include="Scripts\libs\babylon.noworker.js" />
     <Content Include="Scripts\libs\cannon.js" />
-    <Content Include="Scripts\PhysicsEngine.js" />
-    <Content Include="Scripts\Player.js" />
-    <Content Include="Scripts\Tanks\IS7Tank.js" />
-    <Content Include="Scripts\Tanks\SimpleTank.js" />
-    <Content Include="Scripts\Tanks\T90aTank.js" />
-    <Content Include="Scripts\Tanks\Tank.js" />
-    <Content Include="Scripts\Utils.js" />
+    <Content Include="Scripts\v1\PhysicsEngine.js" />
+    <Content Include="Scripts\v1\Player.js" />
+    <Content Include="Scripts\v1\Tanks\IS7Tank.js" />
+    <Content Include="Scripts\v1\Tanks\SimpleTank.js" />
+    <Content Include="Scripts\v1\Tanks\T90aTank.js" />
+    <Content Include="Scripts\v1\Tanks\Tank.js" />
+    <Content Include="Scripts\common\Utils.js" />
+    <Content Include="Scripts\v2\app.js" />
+    <Content Include="Scripts\v2\Bullets\Bullet.js" />
+    <Content Include="Scripts\v2\Bullets\BulletsFactory.js" />
+    <Content Include="Scripts\v2\Bullets\BulletsManager.js" />
+    <Content Include="Scripts\v2\Bullets\FireBullet.js" />
+    <Content Include="Scripts\v2\Main.js" />
+    <Content Include="Scripts\v2\Player.js" />
+    <Content Include="Scripts\v2\Tanks\T90aTank.js" />
+    <Content Include="Scripts\v2\Tanks\Tank.js" />
+    <Content Include="Scripts\v2\Tanks\TanksFactory.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -206,6 +221,9 @@
     <Content Include="Content\Assets\Tanks\IS7\textures\IS-7_NM.dds" />
     <Content Include="Content\Assets\Tanks\IS7\textures\IS-7_SM.dds" />
     <None Include="Project_Readme.html" />
+    <Content Include="Views\TanksArena\V1.cshtml" />
+    <Content Include="Views\TanksArena\V2.cshtml" />
+    <Content Include="Views\Shared\_BabylonLayout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

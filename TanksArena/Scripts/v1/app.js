@@ -63,10 +63,10 @@
         skybox.scaling.z = scaling;
         skybox.scaling.y = 10;
 
-        var ground = BABYLON.Mesh.CreateGround("ground", scale * scaling, scale * scaling, 100, scene);
+        //var ground = BABYLON.Mesh.CreateGround("ground", scale * scaling, scale * scaling, 100, scene);
 
-        //var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 250, scene, false, function () {
-        //});
+        var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "../Content/Images/textures/grounds/terrainbasic.png", scale * scaling, scale * scaling, 100, 0, 250, scene, false, function () {
+        });
 
         var groundMaterian = new BABYLON.StandardMaterial("ground", scene);
         groundMaterian.diffuseTexture = new BABYLON.Texture("../Content/Images/textures/grounds/ground.jpg", scene);
