@@ -1,6 +1,8 @@
 ﻿/// <reference path="~/Scripts/libs/babylon.max.js" />
 /// <reference path="~/Scripts/common/Controls.js" />
 /// <reference path="~/Scripts/common/MathHelper.js" />
+/// <reference path="~/Scripts/v2/Tanks/TanksService.js" />
+/// <reference path="~/Scripts/v2/Enums/TankType.js" />
 
 var Player = (function () {
 
@@ -27,7 +29,8 @@ var Player = (function () {
 
     Player.prototype._InitializeTank = function () {
         var self = this;
-        this.tank = new T90aTank(this.name, this.scene, function (success) {
+
+        this.tank = TanksService.CreateTank(this.name, TankType.T90aTank, this.scene, function (success) {
             if (!success)
                 return;
 
@@ -38,6 +41,7 @@ var Player = (function () {
             self._AddEvents();
 
             self.rotation = self.tank.body.rotationQuaternion.toEulerAngles();
+
         });
     }
 
@@ -46,7 +50,7 @@ var Player = (function () {
                                                                      BABYLON.PhysicsImpostor.BoxImpostor,
                                                                      {
                                                                          mass: this.tank.mass,
-                                                                         friction : this.tank.friction,
+                                                                         friction: this.tank.friction,
                                                                          restitution: this.tank.restitution
                                                                      },
                                                                      this.scene);
@@ -74,9 +78,10 @@ var Player = (function () {
         this.scene.registerBeforeRender(function () {
             if (self.scene.isReady()) {
                 // update camera rotation based on tank direction
-                self.camera.rotationOffset = self.controls.MovingForward() ? 90 : (self.controls.MovingBackward() ? -90 : 90);
                 self.rotation = self.tank.body.rotationQuaternion.toEulerAngles();
 
+
+                self._UpdateCameraRotationOffset();
                 self._UpdateTankSpeed();
 
                 if (self.tank.body && self.tank.body.position) {
@@ -86,16 +91,18 @@ var Player = (function () {
 
                     self._UpdateTankPosition();
                 }
-
-                self.tank.BulletsManager.Update();
             }
         });
+    }
+
+    Player.prototype._UpdateCameraRotationOffset = function () {
+        this.camera.rotationOffset = this.controls.MovingForward() ? 90 : (this.controls.MovingBackward() ? -90 : 90);
     }
 
     Player.prototype._AddEvents = function () {
         var self = this;
         this.scene.onPointerDown = function (evt, pickResult) {
-            if(pickResult && pickResult.pickedPoint)
+            if (pickResult && pickResult.pickedPoint)
                 self.tank.Fire(pickResult.pickedPoint);
         }
     }
@@ -108,7 +115,7 @@ var Player = (function () {
         if (isMovingForward) {
             if (this.tank.speed < this.tank.MAX_SPEED) {
                 this.tank.speed += this.tank.acceleration * this.scene.getAnimationRatio();
-            } else if(this.tank.speed > this.tank.MAX_SPEED) {
+            } else if (this.tank.speed > this.tank.MAX_SPEED) {
                 this.tank.speed = this.tank.MAX_SPEED;
             }
         } else if (isMovingBackward) {
@@ -120,13 +127,20 @@ var Player = (function () {
         if (!(isMovingForward || isMovingBackward)) {
             if (this.tank.speed > 0) {
                 var frontDecay = this.tank.speed / 100 * 3;
+                var speed = this.tank.speed - frontDecay;
 
-                this.tank.speed -= frontDecay;
+                this.tank.speed = decay(speed);
+
             } else {
                 var backDecay = (this.tank.speed / 100 * 3) * -1;
+                var speed = this.tank.speed + backDecay;
 
-                this.tank.speed += backDecay;
+                this.tank.speed = decay(speed);
             }
+        }
+
+        function decay(num) {
+            return Math.abs(num) < 1e-2 ? 0 : num;
         }
     }
 

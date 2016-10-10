@@ -13511,7 +13511,7 @@ World.prototype.internalStep = function(dt){
     // Wake up bodies
     for(i=0; i!==N; i++){
         var bi = bodies[i];
-        if(bi._wakeUpAfterNarrowphase){
+        if(bi && bi._wakeUpAfterNarrowphase){
             bi.wakeUp();
             bi._wakeUpAfterNarrowphase = false;
         }
@@ -13542,7 +13542,7 @@ World.prototype.internalStep = function(dt){
     var pow = Math.pow;
     for(i=0; i!==N; i++){
         var bi = bodies[i];
-        if(bi.type & DYNAMIC){ // Only for dynamic bodies
+        if(bi && bi.type & DYNAMIC){ // Only for dynamic bodies
             var ld = pow(1.0 - bi.linearDamping,dt);
             var v = bi.velocity;
             v.mult(ld,v);
@@ -13559,7 +13559,7 @@ World.prototype.internalStep = function(dt){
     // Invoke pre-step callbacks
     for(i=0; i!==N; i++){
         var bi = bodies[i];
-        if(bi.preStep){
+        if(bi && bi.preStep){
             bi.preStep.call(bi);
         }
     }
@@ -13582,8 +13582,11 @@ World.prototype.internalStep = function(dt){
         CONVEX = Shape.types.CONVEXPOLYHEDRON;
 
     for(i=0; i!==N; i++){
-        var b = bodies[i],
-            force = b.force,
+        var b = bodies[i];
+        if (!b)
+            return;
+
+        var force = b.force,
             tau = b.torque;
         if((b.type & DYNAMIC_OR_KINEMATIC) && b.sleepState !== Body.SLEEPING){ // Only for dynamic
             var velo = b.velocity,
@@ -13651,6 +13654,8 @@ World.prototype.internalStep = function(dt){
     // Invoke post-step callbacks
     for(i=0; i!==N; i++){
         var bi = bodies[i];
+        if (!bi)
+            return;
         var postStep = bi.postStep;
         if(postStep){
             postStep.call(bi);
@@ -13659,8 +13664,10 @@ World.prototype.internalStep = function(dt){
 
     // Sleeping update
     if(this.allowSleep){
-        for(i=0; i!==N; i++){
-            bodies[i].sleepTick(this.time);
+        for (i = 0; i !== N; i++) {
+            var b = bodies[i];
+            if(b)
+                b.sleepTick(this.time);
         }
     }
 };

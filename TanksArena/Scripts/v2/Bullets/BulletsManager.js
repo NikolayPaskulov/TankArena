@@ -1,5 +1,5 @@
 ﻿/// <reference path="~/Scripts/libs/babylon.max.js" />
-
+/// <reference path="~/Scripts/v2/Tanks/TanksService.js" />
 
 var BulletsManager = (function () {
 
@@ -19,37 +19,25 @@ var BulletsManager = (function () {
             var bullet = BulletFactory.Create(this.tank, origin, impact, type, tankAttack, this.scene);
             this.bullets[bullet.body.name] = bullet;
 
+            this.AddCollision(bullet);
+
+            bullet.ApplyImpulse();
+
             this.Reload();
         }
     }
 
-    BulletsManager.prototype.Update = function () {
+    BulletsManager.prototype.AddCollision = function (bullet) {
         var self = this;
+        var tanks = TanksService.tanks.filter(function (t) { return t != self.tank });
 
-        for (var b in this.bullets) {
-            var bullet = this.bullets[b];
+        tanks.forEach(function (t) {
+            bullet.body.physicsImpostor.registerOnPhysicsCollide(t.body.physicsImpostor, function (a, b) {
+                var partSystem = AnimationsHelper.BulletExplosion(bullet.body.position, self.scene);
 
-            //if (CheckForCollision(bullet))
-            //    delete this.bullets[b];
-            //else
-                bullet.Update();
-        }
-
-        function CheckForCollision(bullet) {
-            var meshes = self.scene.meshes.filter(function (m) { return m != self.tank.body && m != self.tank.gun && m.name != "skyBox" && m != bullet.body; });
-            for (var i = 0; i < meshes.length; i++) {
-                var mesh = meshes[i];
-                if (bullet.body.intersectsMesh(mesh, true)) {
-                    var partSystem = AnimationsHelper.BulletExplosion(bullet.body, self.scene);
-                    partSystem.onDispose = function () {
-                        bullet.Dispose();
-                    }
-                    return true
-                }
-            }
-            return false;
-
-        }
+                bullet.Dispose();
+            });
+        });
     }
 
     BulletsManager.prototype.Reload = function () {

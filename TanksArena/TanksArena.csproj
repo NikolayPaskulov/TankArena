@@ -183,11 +183,14 @@
     <Content Include="Scripts\v2\Bullets\BulletsFactory.js" />
     <Content Include="Scripts\v2\Bullets\BulletsManager.js" />
     <Content Include="Scripts\v2\Bullets\FireBullet.js" />
+    <Content Include="Scripts\v2\Enums\BulletType.js" />
+    <Content Include="Scripts\v2\Enums\TankType.js" />
     <Content Include="Scripts\v2\Main.js" />
     <Content Include="Scripts\v2\Player.js" />
     <Content Include="Scripts\v2\Tanks\T90aTank.js" />
     <Content Include="Scripts\v2\Tanks\Tank.js" />
     <Content Include="Scripts\v2\Tanks\TanksFactory.js" />
+    <Content Include="Scripts\v2\Tanks\TanksService.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

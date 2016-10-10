@@ -48,6 +48,9 @@ var Tank = (function () {
     Tank.prototype.Fire = function (impact) {
         var self = this;
         this.BulletsManager.Fire(this.gun.getBoundingInfo().boundingBox.center, impact, this.bulletType, this.attack, function () {
+            //var bBoxV3 = self.body.getBoundingInfo().boundingBox.vectors;
+
+            //self.body.physicsImpostor.applyForce(new BABYLON.Vector3(0, 20, 0), new BABYLON.Vector3(0, 0, 1));
             SoundEffectsService.TankFire();
         });
     }

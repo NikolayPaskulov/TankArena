@@ -1,7 +1,10 @@
 ﻿/// <reference path="~/Scripts/v2/Tanks/Tank.js" />
 /// <reference path="~/Scripts/common/SoundEffectsService.js" />
 /// <reference path="~/Scripts/v2/Tanks/T90aTank.js" />
+/// <reference path="~/Scripts/v2/Tanks/TanksService.js" />
 /// <reference path="~/Scripts/libs/babylon.max.js" />
+/// <reference path="~/Scripts/v2/Enums/TankType.js" />
+
 
 (function () {
     var canvas = document.getElementById("renderCanvas");
@@ -73,7 +76,9 @@
 function AddTank(canvas, scene) {
     var player = new Player("player", BABYLON.Vector3.Zero(), canvas, scene);
 
-    var testTank = new T90aTank("enemy", scene, function () {
+    
+    var testTank = TanksService.CreateTank("enemy", TankType.T90aTank, scene, function () {
+
         testTank.body.position = new BABYLON.Vector3(50, 0, 50);
 
         testTank.body.physicsImpostor = new BABYLON.PhysicsImpostor(testTank.body,

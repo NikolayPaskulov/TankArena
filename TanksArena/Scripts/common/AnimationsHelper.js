@@ -5,13 +5,15 @@ var AnimationsHelper = (function () {
     function AnimationsHelper() {}
 
 
-    AnimationsHelper.prototype.BulletExplosion = function (mesh, scene) {
-        var particleSystem = new BABYLON.ParticleSystem("particles", 20, scene);
+    AnimationsHelper.prototype.BulletExplosion = function (position, scene) {
+        var particleSystem = new BABYLON.ParticleSystem("BulletExplosionPartSystem" + Math.random(), 20, scene);
+        var p = position.clone();
+
         //Texture of each particle
         particleSystem.particleTexture = new BABYLON.Texture("../Content/Images/textures/smoke3.png", scene);
         particleSystem.particleTexture.hasAlpha = true;
         // Where the particles come from
-        particleSystem.emitter = mesh; // the starting object, the emitter
+        particleSystem.emitter = p; // the starting object, the emitter
         particleSystem.minEmitBox = new BABYLON.Vector3(-1, 0, -1); // Starting all from
         particleSystem.maxEmitBox = new BABYLON.Vector3(1, 1, 1); // To...
         // Colors of all particles

@@ -4,17 +4,12 @@
 var FireBullet = (function () {
 
     function FireBullet(tank, origin, impact, type, tankAttack, scene) {
-        Bullet.call(this, tank, origin, impact, type, tankAttack, scene);
+        Bullet.call(this, tank, origin, impact, type, tankAttack, {}, scene);
         this.fireSystem = this.CreateParticleSystem();
     }
 
     FireBullet.prototype = Object.create(Bullet.prototype);
     FireBullet.prototype.constructor = FireBullet;
-
-    FireBullet.prototype.Dispose = function () {
-        this.fireSystem.dispose();
-        this.body.dispose();
-    }
 
     FireBullet.prototype.CreateParticleSystem = function () {
         // Create a particle system
