@@ -18,5 +18,10 @@ namespace TanksArena.Controllers
         {
             return View();
         }
+
+        public ActionResult V3()
+        {
+            return View();
+        }
     }
 }

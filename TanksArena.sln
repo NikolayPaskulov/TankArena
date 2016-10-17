@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TanksArena", "TanksArena\TanksArena.csproj", "{8BED8AE4-B837-468F-AF47-2079517873E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameEngine", "GameEngine", "{F3B47A9F-B326-4731-899E-30B68F347616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine.Contracts", "GameEngine.Contracts\GameEngine.Contracts.csproj", "{805166BA-BA49-4D46-8397-597415F1B1F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine", "GameEngine\GameEngine.csproj", "{A0C7CA00-24EB-4824-A605-3C4C05170B6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +21,20 @@ Global
 		{8BED8AE4-B837-468F-AF47-2079517873E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BED8AE4-B837-468F-AF47-2079517873E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BED8AE4-B837-468F-AF47-2079517873E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{805166BA-BA49-4D46-8397-597415F1B1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{805166BA-BA49-4D46-8397-597415F1B1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{805166BA-BA49-4D46-8397-597415F1B1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{805166BA-BA49-4D46-8397-597415F1B1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C7CA00-24EB-4824-A605-3C4C05170B6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C7CA00-24EB-4824-A605-3C4C05170B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C7CA00-24EB-4824-A605-3C4C05170B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C7CA00-24EB-4824-A605-3C4C05170B6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{805166BA-BA49-4D46-8397-597415F1B1F4} = {F3B47A9F-B326-4731-899E-30B68F347616}
+		{A0C7CA00-24EB-4824-A605-3C4C05170B6E} = {F3B47A9F-B326-4731-899E-30B68F347616}
 	EndGlobalSection
 EndGlobal
