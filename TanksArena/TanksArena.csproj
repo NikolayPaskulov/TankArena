@@ -73,6 +73,15 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\packages\SimpleInjector.3.2.3\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.3.2.3\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web.Mvc">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.Mvc.3.2.3\lib\net40\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -150,6 +159,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\TankMultiplayer.cs" />
+    <Compile Include="IoC\Bootstrapper.cs" />
+    <Compile Include="IoC\HubActivator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -191,7 +202,6 @@
     <Content Include="Scripts\libs\babylon.js" />
     <Content Include="Scripts\libs\babylon.max.js" />
     <Content Include="Scripts\libs\Oimo.js" />
-    <Content Include="Scripts\test.js" />
     <Content Include="Scripts\v1\app.js" />
     <Content Include="Scripts\v1\Bullets\BasicBullet.js" />
     <Content Include="Scripts\v1\Bullets\BulletFactory.js" />
@@ -228,13 +238,18 @@
     <Content Include="Scripts\v3\Bullets\FireBullet.js" />
     <Content Include="Scripts\v3\Enums\BulletType.js" />
     <Content Include="Scripts\v3\Enums\TankType.js" />
+    <Content Include="Scripts\v3\InputLoop.js" />
+    <Content Include="Scripts\v3\Loop.js" />
     <Content Include="Scripts\v3\Player.js" />
+    <Content Include="Scripts\v3\Queue.js" />
     <Content Include="Scripts\v3\Scene.js" />
-    <Content Include="Scripts\v3\ServerConnector.js" />
+    <Content Include="Scripts\v3\Server.js" />
+    <Content Include="Scripts\v3\ServerLoop.js" />
     <Content Include="Scripts\v3\Tanks\T90aTank.js" />
     <Content Include="Scripts\v3\Tanks\Tank.js" />
     <Content Include="Scripts\v3\Tanks\TanksFactory.js" />
     <Content Include="Scripts\v3\Tanks\TanksService.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -251,6 +266,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\v3\CommandHandlers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -273,6 +289,32 @@
     <Content Include="Views\Shared\_BabylonLayout.cshtml" />
     <Content Include="Views\TanksArena\V3.cshtml" />
     <Content Include="Scripts\libs\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jitter\Jitter.csproj">
+      <Project>{aa03ef1a-94f7-4d30-ab14-2092863ff923}</Project>
+      <Name>Jitter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TanksArena.Business.Contracts\TanksArena.Business.Contracts.csproj">
+      <Project>{26793289-d4a7-4e45-bfc8-e492dd86cdda}</Project>
+      <Name>TanksArena.Business.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TanksArena.Business\TanksArena.Business.csproj">
+      <Project>{2bad5641-c220-44d9-91a9-95b88d7ad97b}</Project>
+      <Name>TanksArena.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TanksArena.Physics.Contacts\TanksArena.Physics.Contacts.csproj">
+      <Project>{13d2753e-c105-40e4-a1d6-274fcea4baef}</Project>
+      <Name>TanksArena.Physics.Contacts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TanksArena.Physics.Models\TanksArena.Physics.Models.csproj">
+      <Project>{0b9d223f-b119-409f-ac91-ce65f46f75eb}</Project>
+      <Name>TanksArena.Physics.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TanksArena.Physics\TanksArena.Physics.csproj">
+      <Project>{7dac301a-0fd0-4ef6-a599-271330208328}</Project>
+      <Name>TanksArena.Physics</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

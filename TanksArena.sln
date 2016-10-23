@@ -1,15 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TanksArena", "TanksArena\TanksArena.csproj", "{8BED8AE4-B837-468F-AF47-2079517873E6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameEngine", "GameEngine", "{F3B47A9F-B326-4731-899E-30B68F347616}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PhysicsEngine", "PhysicsEngine", "{27775330-BB19-4468-8B50-12D9E721C6C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine.Contracts", "GameEngine.Contracts\GameEngine.Contracts.csproj", "{805166BA-BA49-4D46-8397-597415F1B1F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jitter", "Jitter\Jitter.csproj", "{AA03EF1A-94F7-4D30-AB14-2092863FF923}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine", "GameEngine\GameEngine.csproj", "{A0C7CA00-24EB-4824-A605-3C4C05170B6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TanksArena.Physics", "TanksArena.Physics\TanksArena.Physics.csproj", "{7DAC301A-0FD0-4EF6-A599-271330208328}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TanksArena.Physics.Models", "TanksArena.Physics.Models\TanksArena.Physics.Models.csproj", "{0B9D223F-B119-409F-AC91-CE65F46F75EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TanksArena.Physics.Contacts", "TanksArena.Physics.Contacts\TanksArena.Physics.Contacts.csproj", "{13D2753E-C105-40E4-A1D6-274FCEA4BAEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TanksArena.Models", "TanksArena.Models\TanksArena.Models.csproj", "{F99F03A3-04E9-4D8D-BFCB-2A190A803763}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TanksArena.Business", "TanksArena.Business\TanksArena.Business.csproj", "{2BAD5641-C220-44D9-91A9-95B88D7AD97B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TanksArena.Business.Contracts", "TanksArena.Business.Contracts\TanksArena.Business.Contracts.csproj", "{26793289-D4A7-4E45-BFC8-E492DD86CDDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TanksArena.Models.Contracts", "TanksArena.Models.Contracts\TanksArena.Models.Contracts.csproj", "{63CA19B3-F68B-4B47-B5D9-385CF277B2F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,20 +33,46 @@ Global
 		{8BED8AE4-B837-468F-AF47-2079517873E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BED8AE4-B837-468F-AF47-2079517873E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BED8AE4-B837-468F-AF47-2079517873E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{805166BA-BA49-4D46-8397-597415F1B1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{805166BA-BA49-4D46-8397-597415F1B1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{805166BA-BA49-4D46-8397-597415F1B1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{805166BA-BA49-4D46-8397-597415F1B1F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0C7CA00-24EB-4824-A605-3C4C05170B6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0C7CA00-24EB-4824-A605-3C4C05170B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0C7CA00-24EB-4824-A605-3C4C05170B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0C7CA00-24EB-4824-A605-3C4C05170B6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA03EF1A-94F7-4D30-AB14-2092863FF923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA03EF1A-94F7-4D30-AB14-2092863FF923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA03EF1A-94F7-4D30-AB14-2092863FF923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA03EF1A-94F7-4D30-AB14-2092863FF923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DAC301A-0FD0-4EF6-A599-271330208328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DAC301A-0FD0-4EF6-A599-271330208328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DAC301A-0FD0-4EF6-A599-271330208328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DAC301A-0FD0-4EF6-A599-271330208328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B9D223F-B119-409F-AC91-CE65F46F75EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B9D223F-B119-409F-AC91-CE65F46F75EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B9D223F-B119-409F-AC91-CE65F46F75EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B9D223F-B119-409F-AC91-CE65F46F75EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13D2753E-C105-40E4-A1D6-274FCEA4BAEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13D2753E-C105-40E4-A1D6-274FCEA4BAEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13D2753E-C105-40E4-A1D6-274FCEA4BAEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13D2753E-C105-40E4-A1D6-274FCEA4BAEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F99F03A3-04E9-4D8D-BFCB-2A190A803763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F99F03A3-04E9-4D8D-BFCB-2A190A803763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F99F03A3-04E9-4D8D-BFCB-2A190A803763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F99F03A3-04E9-4D8D-BFCB-2A190A803763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BAD5641-C220-44D9-91A9-95B88D7AD97B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BAD5641-C220-44D9-91A9-95B88D7AD97B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BAD5641-C220-44D9-91A9-95B88D7AD97B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BAD5641-C220-44D9-91A9-95B88D7AD97B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26793289-D4A7-4E45-BFC8-E492DD86CDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26793289-D4A7-4E45-BFC8-E492DD86CDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26793289-D4A7-4E45-BFC8-E492DD86CDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26793289-D4A7-4E45-BFC8-E492DD86CDDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63CA19B3-F68B-4B47-B5D9-385CF277B2F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63CA19B3-F68B-4B47-B5D9-385CF277B2F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63CA19B3-F68B-4B47-B5D9-385CF277B2F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63CA19B3-F68B-4B47-B5D9-385CF277B2F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{805166BA-BA49-4D46-8397-597415F1B1F4} = {F3B47A9F-B326-4731-899E-30B68F347616}
-		{A0C7CA00-24EB-4824-A605-3C4C05170B6E} = {F3B47A9F-B326-4731-899E-30B68F347616}
+		{AA03EF1A-94F7-4D30-AB14-2092863FF923} = {27775330-BB19-4468-8B50-12D9E721C6C4}
+		{7DAC301A-0FD0-4EF6-A599-271330208328} = {27775330-BB19-4468-8B50-12D9E721C6C4}
+		{0B9D223F-B119-409F-AC91-CE65F46F75EB} = {27775330-BB19-4468-8B50-12D9E721C6C4}
+		{13D2753E-C105-40E4-A1D6-274FCEA4BAEF} = {27775330-BB19-4468-8B50-12D9E721C6C4}
 	EndGlobalSection
 EndGlobal

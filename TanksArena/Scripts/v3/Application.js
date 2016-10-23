@@ -1,4 +1,7 @@
 ﻿/// <reference path="~/Scripts/libs/babylon.max.js" />
+/// <reference path="~/Scripts/v3/InputLoop.js" />
+/// <reference path="~/Scripts/v3/Loop.js" />
+/// <reference path="~/Scripts/v3/Queue.js" />
 
 var Application = (function () {
 
@@ -7,10 +10,23 @@ var Application = (function () {
         this.engine = new BABYLON.Engine(this.canvas, true);
         this.IScene = scene;
         this._scene = null;
+
+        this.Server = new Server();
+
+        this.ServerQ = new Queue();
+        this.ClientQ = new Queue();
+
+        this.InputLoop = null;
+        this.ServerLoop = new ServerLoop(this.Server, this.ServerQ);
     }
 
     Application.prototype.Start = function () {
         this._scene = this.IScene.CreateScene(this.canvas, this.engine);
+
+        this.InputLoop = new InputLoop(this.ClientQ, this.ServerQ, this._scene);
+        this.InputLoop.Start(60);
+
+        this.ServerLoop.Start(60);
 
         this.InitializeSounds();
         this.StartEngineLoop();

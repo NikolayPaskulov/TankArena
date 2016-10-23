@@ -1,5 +1,8 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
+using Microsoft.Owin;
 using Owin;
+using TanksArena.IoC;
 
 namespace TanksArena
 {
@@ -7,7 +10,12 @@ namespace TanksArena
     {
         public void Configuration(IAppBuilder app)
         {
-            app.MapSignalR();
+            Bootstrapper.Bootsrap();
+
+            var unityHubActivator = new HubActivator();
+            GlobalHost.DependencyResolver.Register(typeof(IHubActivator), () => unityHubActivator);
+
+            app.MapSignalR(new HubConfiguration() { EnableDetailedErrors = true });
         }
     }
 }
