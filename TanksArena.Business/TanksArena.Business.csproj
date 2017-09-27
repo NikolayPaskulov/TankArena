@@ -64,6 +64,9 @@
     <Compile Include="Timer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Jitter\Jitter.csproj">
       <Project>{aa03ef1a-94f7-4d30-ab14-2092863ff923}</Project>
       <Name>Jitter</Name>
@@ -80,21 +83,6 @@
       <Project>{f99f03a3-04e9-4d8d-bfcb-2a190a803763}</Project>
       <Name>TanksArena.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TanksArena.Physics.Contacts\TanksArena.Physics.Contacts.csproj">
-      <Project>{13d2753e-c105-40e4-a1d6-274fcea4baef}</Project>
-      <Name>TanksArena.Physics.Contacts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TanksArena.Physics.Models\TanksArena.Physics.Models.csproj">
-      <Project>{0b9d223f-b119-409f-ac91-ce65f46f75eb}</Project>
-      <Name>TanksArena.Physics.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TanksArena.Physics\TanksArena.Physics.csproj">
-      <Project>{7dac301a-0fd0-4ef6-a599-271330208328}</Project>
-      <Name>TanksArena.Physics</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TanksArena.Physics.Models;
 
 namespace TanksArena.Business.Contracts.Services
 {
@@ -11,6 +10,6 @@ namespace TanksArena.Business.Contracts.Services
     {
         void CreateGame(TNetworkProvider provider);
         void PlayerJoined(string id, TNetworkProvider provider);
-        void HandlePlayerInputs(string gameId, string playerId, IEnumerable<PhysicsCommand> commands);
+        void HandlePlayerInputs(string gameId, string playerId, IEnumerable<object> commands);
     }
 }

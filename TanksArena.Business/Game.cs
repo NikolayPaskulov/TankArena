@@ -39,10 +39,11 @@ namespace TanksArena.Business
 
         private void StartLoop()
         {
-            Thread th = new Thread(new ThreadStart(delegate
+
+            var test = Task.Factory.StartNew(() =>
             {
                 var timer = new Timer();
-                long startTime = 0l;
+                long startTime = 0L;
 
                 while (_isStarted)
                 {
@@ -51,9 +52,7 @@ namespace TanksArena.Business
                     SendState();
                     while (timer.GetTicks() - startTime < 1000 / 50) ;
                 }
-            }));
-
-            th.Start();
+            }, TaskCreationOptions.LongRunning);
         }
 
         private void SendState()
@@ -64,7 +63,7 @@ namespace TanksArena.Business
 
         private GameSnapshot GenerateState()
         {
-
+            return new GameSnapshot();
         }
 
         public IEnumerable<IPlayer> Players

@@ -18,19 +18,20 @@ var Application = (function () {
 
         this.InputLoop = null;
         this.ServerLoop = new ServerLoop(this.Server, this.ServerQ);
+        this.CommandHandlers = [];
     }
 
     Application.prototype.Start = function () {
         this._scene = this.IScene.CreateScene(this.canvas, this.engine);
 
+        this.InitializeSounds();
+        this.StartEngineLoop();
+        this.AddResizeHandler();
+
         this.InputLoop = new InputLoop(this.ClientQ, this.ServerQ, this._scene);
         this.InputLoop.Start(60);
 
         this.ServerLoop.Start(60);
-
-        this.InitializeSounds();
-        this.StartEngineLoop();
-        this.AddResizeHandler();
     }
 
     Application.prototype.InitializeSounds = function () {

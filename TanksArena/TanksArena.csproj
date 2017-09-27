@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -303,17 +304,13 @@
       <Project>{2bad5641-c220-44d9-91a9-95b88d7ad97b}</Project>
       <Name>TanksArena.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TanksArena.Physics.Contacts\TanksArena.Physics.Contacts.csproj">
-      <Project>{13d2753e-c105-40e4-a1d6-274fcea4baef}</Project>
-      <Name>TanksArena.Physics.Contacts</Name>
+    <ProjectReference Include="..\TanksArena.Models.Contracts\TanksArena.Models.Contracts.csproj">
+      <Project>{63ca19b3-f68b-4b47-b5d9-385cf277b2f8}</Project>
+      <Name>TanksArena.Models.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TanksArena.Physics.Models\TanksArena.Physics.Models.csproj">
-      <Project>{0b9d223f-b119-409f-ac91-ce65f46f75eb}</Project>
-      <Name>TanksArena.Physics.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TanksArena.Physics\TanksArena.Physics.csproj">
-      <Project>{7dac301a-0fd0-4ef6-a599-271330208328}</Project>
-      <Name>TanksArena.Physics</Name>
+    <ProjectReference Include="..\TanksArena.Models\TanksArena.Models.csproj">
+      <Project>{f99f03a3-04e9-4d8d-bfcb-2a190a803763}</Project>
+      <Name>TanksArena.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
